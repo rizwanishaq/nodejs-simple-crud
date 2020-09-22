@@ -38,3 +38,19 @@ Content-Type: application/json
 
 ### DELELTE user
 DELETE  http://localhost:3000/users/5f6a038b4b4b7e70c638d0b2
+
+
+
+### Get Request
+GET http://localhost:3000/users/5f6a0412b016b47275ab5fdc/cars/
+
+
+### POST Request
+POST http://localhost:3000/users/5f6a0412b016b47275ab5fdc/cars
+Content-Type: application/json
+
+{  
+   "make": "Toyota",
+   "model": "Prius",
+   "year": 2015
+}

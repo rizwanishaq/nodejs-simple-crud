@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Car = require("../models/Car");
+
 module.exports = {
   index: async (req, res, next) => {
     const users = await User.find({});
@@ -48,5 +50,27 @@ module.exports = {
       });
     }
     throw new Error("User already deleted");
+  },
+
+  getUserCars: async (req, res, next) => {
+    const { userId } = req.params;
+
+    const user = await User.findById(userId).populate("cars");
+    res.status(200).json(user.cars);
+  },
+
+  newUserCar: async (req, res, next) => {
+    const { userId } = req.params;
+    const newCar = new Car(req.body);
+
+    // Get user
+    const user = await User.findById(userId);
+    // Assign user as a car's sells
+    newCar.seller = user;
+    await newCar.save();
+    // Add car to the user's cars array
+    user.cars.push(newCar);
+    await user.save();
+    res.status(201).json(user);
   },
 };
