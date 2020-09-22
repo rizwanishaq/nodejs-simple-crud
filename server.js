@@ -2,13 +2,20 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
+
 const usersRoute = require("./routes/users");
+const connectDB = require("./helpers/db");
 
 const app = express();
+
+// connect to database
+connectDB();
 
 // Middle-wares
 app.use(morgan("combined"));
 app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/users", usersRoute);
@@ -22,7 +29,7 @@ app.use((req, res, next) => {
 // Error handles function
 app.use((err, req, res, next) => {
   // Response to client
-  const error = process.env.ENV === "dev" ? err : {};
+  const error = process.env.ENV === "dev" ? err : err;
   const status = err.status || 500;
 
   res.status(status).json({

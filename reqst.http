@@ -3,10 +3,38 @@ GET http://localhost:3000/users/
 
 ### POST REQUEST
 
-POST http://localhost:3000/signup
+POST http://localhost:3000/users/
 Content-Type: application/json
 
-{
-   "email": "assssfsafsdfaadsfafdf@gmail.com",
-   "password": "asd1231"
+{  
+   "firstName": "John",
+   "lastName": "Smith",
+   "email": "assssfsafsdfaadsfafdf@gmail.com"
 }
+
+
+### Get user
+GET http://localhost:3000/users/5f6a038b4b4b7e70c638d0b1
+
+
+### PUT user
+PUT http://localhost:3000/users/5f6a038b4b4b7e70c638d0b1
+Content-Type: application/json
+
+{  
+   "firstName": "Josadfdahn1234",
+   "lastName": "Smitfasfdh",
+   "email": "assssfsasdfaafsdfaadsfafdf@gmail.com"
+}
+
+
+### PUT user
+PATCH  http://localhost:3000/users/5f6a038b4b4b7e70c638d0b1
+Content-Type: application/json
+
+{  
+   "firstName": "walladsfadal"
+}
+
+### DELELTE user
+DELETE  http://localhost:3000/users/5f6a038b4b4b7e70c638d0b2
